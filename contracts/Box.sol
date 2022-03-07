@@ -13,13 +13,16 @@ contract Box is Ownable {
   // Stores a new value in the contract
   // Only Owner can store new value
   // The Owner of the contract is the DAO
-  function store(uint256 newValue) public onlyOwner {
+  function store(uint256 newValue) public onlyOwner 
+  {
     value = newValue;
     emit ValueChanged(newValue);
   }
 
   // Reads the last stored value
-  function retrieve() public view returns (uint256) {
+  function retrieve() public view returns (uint256) 
+  {
     return value;
   }
+
 }
