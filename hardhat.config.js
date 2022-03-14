@@ -7,7 +7,7 @@ require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-web3");
 
-const { ALCHEMY_KEY, ACCOUNT_PRIVATE_KEY,  ETHERSCAN_API_KEY } = process.env;
+const { ALCHEMY_KEY, ACCOUNT_PRIVATE_KEY, ETHERSCAN_API_KEY } = process.env;
 
 module.exports = {
   solidity: "0.8.0",
