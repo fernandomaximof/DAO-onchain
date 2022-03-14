@@ -1,7 +1,6 @@
-const { min_delay } = require('./helper_hardhat_config');
+const { MIN_DELAY } = require('./helper_hardhat_config');
 
 async function main() {
-    const MIN_DELAY = min_delay();
     console.log(MIN_DELAY)
     const TimeLock = await ethers.getContractFactory("TimeLock");
     const timeLock = await TimeLock.deploy(MIN_DELAY, [], []);

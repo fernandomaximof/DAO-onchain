@@ -1,7 +1,5 @@
-function min_delay() {
-    return 3600;
-}
+const MIN_DELAY = 3600;
 
 module.exports = {
-    min_delay
+    MIN_DELAY
 }
