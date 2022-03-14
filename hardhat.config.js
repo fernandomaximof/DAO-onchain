@@ -14,8 +14,6 @@ module.exports = {
   defaultNetwork: "rinkeby",
   networks: {
     hardhat: {
-      gasPrice: 20000000000,
-      gas: 90000000
     },
     rinkeby: {
       url: `https://eth-rinkeby.alchemyapi.io/v2/${ALCHEMY_KEY}`,
