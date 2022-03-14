@@ -6,15 +6,17 @@ require('dotenv').config();
 require("@nomiclabs/hardhat-ethers");
 require("@nomiclabs/hardhat-etherscan");
 require("@nomiclabs/hardhat-web3");
-require("./scripts/deploy.js");
 
 const { ALCHEMY_KEY, ACCOUNT_PRIVATE_KEY,  ETHERSCAN_API_KEY } = process.env;
 
 module.exports = {
-  solidity: "0.8.9",
-  defaultNetwork: "hardhat",//"rinkeby",
+  solidity: "0.8.0",
+  defaultNetwork: "rinkeby",
   networks: {
-    hardhat: {},
+    hardhat: {
+      gasPrice: 20000000000,
+      gas: 90000000
+    },
     rinkeby: {
       url: `https://eth-rinkeby.alchemyapi.io/v2/${ALCHEMY_KEY}`,
       accounts: [`0x${ACCOUNT_PRIVATE_KEY}`]
