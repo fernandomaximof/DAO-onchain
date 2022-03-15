@@ -1,5 +1,11 @@
 const MIN_DELAY = 3600;
+const VOTING_PERIOD = 5;
+const VOTING_DELAY = 1;
+const QUORUM_PERCENTAGE = 4;
 
 module.exports = {
-    MIN_DELAY
+    MIN_DELAY,
+    VOTING_PERIOD,
+    VOTING_DELAY,
+    QUORUM_PERCENTAGE
 }

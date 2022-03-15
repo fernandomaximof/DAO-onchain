@@ -1,6 +1,9 @@
 # Basic Sample Hardhat Project
 
-```npx hardhat run --network hardhat scripts/01_time_lock.js ```
+```
+npx hardhat run --network hardhat scripts/deploy.js
+npx hardhat run --network hardhat scripts/01_time_lock.js 
+```
 
 This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
 
