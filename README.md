@@ -2,7 +2,8 @@
 
 ```
 npx hardhat run --network hardhat scripts/deploy.js
-npx hardhat run --network hardhat scripts/01_time_lock.js 
+npx hardhat run --network hardhat scripts/propose.js
+npx hardhat test --network hardhat
 ```
 
 Aragon, Colony, DAOHaus, or DAOStack

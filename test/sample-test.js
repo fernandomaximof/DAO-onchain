@@ -9,16 +9,18 @@ describe("DAO", function () {
   const ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
 
   var box;
+  var governanceToken;
+  var deployer;
   
   beforeEach(async function() {
-    const [ deployer ] = await ethers.getSigners();
+    [ deployer ] = await ethers.getSigners();
 
     const GovernanceToken = await ethers.getContractFactory("GovernanceToken");
     const TimeLock = await ethers.getContractFactory("TimeLock");
     const GovernorContract = await ethers.getContractFactory("GovernorContract");
     const Box = await ethers.getContractFactory("Box");
     
-    const governanceToken = await GovernanceToken.deploy();
+    governanceToken = await GovernanceToken.deploy();
     const timeLock = await TimeLock.deploy(MIN_DELAY, [], []);
     const governorContract = await GovernorContract.deploy(governanceToken.address, 
         timeLock.address, 
@@ -58,6 +60,36 @@ describe("DAO", function () {
     expect(BigInt(value)).to.equal(BigInt(0));
     
   })
+
+
+  // 2nd Test
+  it("CHECK INITIAL DEPLOYER BALANCE", async() => {
+    var balance;
+
+    try {
+      balance = await governanceToken.balanceOf(deployer.address);
+    } catch(e) {
+      console.log(e);
+    }
+    
+    expect(parseInt(balance)).to.equal(1e+24);
+    
+  })
+
+
+  // 3nd Test
+  // it("TRANFER TOKENS", async() => {
+  //   var balance;
+
+  //   try {
+  //     await governanceToken.transfer(address to, uint256 amount)
+  //   } catch(e) {
+  //     console.log(e);
+  //   }
+    
+  //   expect(parseInt(balance)).to.equal(1e+24);
+    
+  // })
 
   /**/
 });
