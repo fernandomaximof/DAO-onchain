@@ -1,17 +1,28 @@
 const { ethers } = require('hardhat');
-const { RINKEBY_BOX_CONTRACT_ADDRESS } = require('./helper_hardhat_config');
+const { NEW_STORE_VALUE
+  , PROPOSAL_DESCRIPTION
+  , RINKEBY_BOX_CONTRACT_ADDRESS
+  , RINKEBY_GOVERNOR_CONTRACT_ADDRESS } = require('./helper_hardhat_config');
 
 async function main() {
   const networkName = hre.network.name
 
   if (networkName == 'rinkeby') {
-      const [ deployer ] = await ethers.getSigners();
-      
+    try {
       const Box = await ethers.getContractFactory('Box');
       const box = await Box.attach(RINKEBY_BOX_CONTRACT_ADDRESS);
-      var value = BigInt(await box.retrieve());
-      console.log(value);
+
+      const GovernorContract = await ethers.getContractFactory('GovernorContract');
+      const governorContract = await GovernorContract.attach(RINKEBY_GOVERNOR_CONTRACT_ADDRESS);
+
+      console.log([box.address])
+      // const proposeTx = await governorContract.propose([box.address], [0], [NEW_STORE_VALUE], PROPOSAL_DESCRIPTION);
+      // await proposeTx.wait(1);
+    } catch(e) {
+      console.log(e);
+    }
   }
+
 };
 
   main()
