@@ -1,12 +1,14 @@
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
-describe("DAO OnChain", function () {
+describe("DAO", function () {
   const MIN_DELAY = 3600;
   const VOTING_PERIOD = 5;
   const VOTING_DELAY = 1;
   const QUORUM_PERCENTAGE = 4;
   const ADDRESS_ZERO = "0x0000000000000000000000000000000000000000";
+
+  var box;
   
   beforeEach(async function() {
     const [ deployer ] = await ethers.getSigners();
@@ -23,13 +25,7 @@ describe("DAO OnChain", function () {
         QUORUM_PERCENTAGE, 
         VOTING_PERIOD, 
         VOTING_DELAY);
-    const box = await Box.deploy();
-    await box.deployed()
-
-    console.log("GovernanceToken to:", governanceToken.address);
-    console.log("TimeLock to:", timeLock.address);
-    console.log("GovernorContract to:", governorContract.address);
-    console.log("Box to:", box.address);
+    box = await Box.deploy();
 
     const proposerRole = timeLock.PROPOSER_ROLE();
     const executorRole = timeLock.EXECUTOR_ROLE();
@@ -51,18 +47,15 @@ describe("DAO OnChain", function () {
 
   // 1st Test
   it("RETRIEVE INITIAL VALUE FROM BOX CONTRACT", async() => {
-    box = await Box.deploy();
-    await box.deployed()
-    console.log(box.address)
-    // var value;
+    var value;
 
-    // try {
-    //   value = await box.retrieve();
-    // } catch(e) {
-    //   console.log(e);
-    // }
+    try {
+      value = await box.retrieve();
+    } catch(e) {
+      console.log(e);
+    }
     
-    // expect(BigInt(value)).to.equal(0);
+    expect(BigInt(value)).to.equal(BigInt(0));
     
   })
 
